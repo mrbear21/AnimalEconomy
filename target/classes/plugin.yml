@@ -1,0 +1,12 @@
+name: AnimalEconomy
+main: com.animaleconomy.Brain
+version: 0.0.1
+api-version: 1.16
+author: mrbear25
+softdepend: [PlaceholderAPI]
+description: Animal Economy
+commands:
+  ae:
+    description: Додати, зняти або встановити вбивства мобів для гравця.
+    usage: /ae <add|remove|set> <player> <mob> <count>
+    permission: ae.admin
