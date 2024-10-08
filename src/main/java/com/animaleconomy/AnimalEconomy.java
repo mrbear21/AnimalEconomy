@@ -1,5 +1,6 @@
 package com.animaleconomy;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
@@ -49,6 +50,18 @@ public class AnimalEconomy implements Listener {
                     return;
                 }
             }
+
+            // Створюємо і викликаємо подію
+            AnimalEconomyEvent killEvent = new AnimalEconomyEvent(player, entityType);
+            Bukkit.getPluginManager().callEvent(killEvent);
+
+            // Перевіряємо, чи подію було скасовано
+            if (killEvent.isCancelled()) {
+                return;
+            }
+
+            // Оновлюємо тип моба, якщо він був змінений іншим плагіном
+            entityType = killEvent.getEntityType();
 
             lastKillTime.put(playerId, currentTime);
 
